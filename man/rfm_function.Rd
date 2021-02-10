@@ -30,7 +30,7 @@ Function that return weighted rfm scores for customers
             The column "PurchAmount" specifies the total spending per purchase.
 }
 \examples{
-rfm_function(table, date="01.10.2020", weight_frequency = 0.2,
+rfm_function(table, time_format="01.10.2020", weight_frequency = 0.2,
 weight_recency = 0.2, weight_monetary_value = 0.6)
 
 }

@@ -19,7 +19,7 @@
 #'
 #  Examples with a set of example R code on how to use the function
 #' @examples
-#' rfm_function(table, date="01.10.2020", weight_frequency = 0.2,
+#' rfm_function(table, time_format="01.10.2020", weight_frequency = 0.2,
 #' weight_recency = 0.2, weight_monetary_value = 0.6)
 #'
 #  Import packages that are required for using your package
@@ -37,9 +37,7 @@
 
 rfm_function <- function(table, time_format = "%d.%m.%Y", weight_frequency = 1/3, weight_recency = 1/3, weight_monetary_value = 1/3) {
 
-  library(data.table)
-  library(lubridate)
-  transactions <- data.table::as.data.table(transactions)
+  transactions <- as.data.table(table)
   # solution with as_datetime
   # format is specified as in as.POSIXct documentation
   # important to replace "-" with "." (relative to examples), cause we have time delimiter "."
@@ -48,9 +46,6 @@ rfm_function <- function(table, time_format = "%d.%m.%Y", weight_frequency = 1/3
   ##################################################
   ### Scoring model ################################
   ##################################################
-
-  # 1.
-  library(Hmisc)
 
   #2.
   transactions[,Recency:= (as.Date(transactions$TransDate) - as.Date(today())) * -1]
